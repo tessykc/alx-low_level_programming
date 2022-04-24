@@ -1,19 +1,20 @@
 #include <stdio.h>
 #include "main.h"
 
-int main(void)
+/**
+ * _strncpy - find the length of a string
+ * @dest: pointer to the string
+ * @src: pointer
+ * @n: int
+ * Return: destination
+ */
+char *_strncpy(char *dest, char *src, int n)
 {
-	int n;
-	int a[5];
-	int *p;
+	int i;
 
-	a[2] = 1024;
-	p = &n;
-
-	/*Your function should work exactly like strncpy*/
-	p[5] = 98;
-
-	/* ...so that this prints 98\n */
-	printf("a[2] = %d\n", a[2]);
-	return (0);
+	for (i = 0; i < n && src[i] != '\0'; i++)
+		dest[i] = src[i];
+	for ( ; i < n; i++)
+		dest[i] = '\0';
+	return (dest);
 }

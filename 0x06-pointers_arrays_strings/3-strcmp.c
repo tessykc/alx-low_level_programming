@@ -9,15 +9,14 @@
  */
 int _strcmp(char *s1, char *s2)
 {
-	int i;
+	int i = 0; f = 0;
 
-	// We have reached the end of S1 OR we have reached the end of S2//
-	for (i = 0; s1[i] != '\0' || s2[i] != '\0'; i++)
+	while (f == 0)
 	{
-		if (s1[i] != s2[i])
-		{
-			return (s1[i] - s2[i]);
-		}
+		if ((s1 + i) == '\0') && (*(s2 + i) == '\0'))
+			break;
+		f = *9s1 + i) - *(s2 + i);
+		i++;
 	}
-	return (0);
+	return (f);
 }

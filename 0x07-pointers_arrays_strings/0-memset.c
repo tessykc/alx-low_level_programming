@@ -3,8 +3,8 @@
 /**
  * _memset - ironnou
  * @s: pointer to char params
- * b: data to change
- * @n- index
+ * @b: data to change
+ * @n: bytes of the memory area pointed to by s
  * Return: *s
  */
 

@@ -10,12 +10,12 @@
 void print_opcodes(char *a, int n)
 {
 	int i;
-	
+
 	for (i = 0; i < n; i++)
 	{
-		printf("%.2hhx", a[i]);	
-	       if (i < n - 1)
-		       printf(" ");
+		printf("%.2hhx", a[i]);
+		if (i < n - 1)
+			printf(" ");
 	}
 	printf("\n");
 }
@@ -33,7 +33,8 @@ int main(int argc, char **argv)
 	if (argc != 2)
 	{
 		printf("Error\n");
-		exit(1);								}
+		exit(1);
+	}
 	n = atoi(argv[1]);
 	if (n < 0)
 	{

@@ -9,7 +9,7 @@ int mod(int a, int b)
 {
 	int c;
 
-	if b != 0
+	if (b != 0)
 		c = a % b;
-	return (c)
+	return (c);
 }

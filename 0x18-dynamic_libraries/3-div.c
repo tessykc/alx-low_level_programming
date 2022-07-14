@@ -8,8 +8,10 @@
 int div(int a, int b)
 {
 	int c;
-
-	while (b != 0)
+	
+	if (b != 0)
 		c = a / b;
+	else
+		printf("woops division by 0 is a taboo");
 	return (c);
 }

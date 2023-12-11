@@ -8,3 +8,6 @@
 * You can assume that value won’t appear more than once in array
 * if array is NULL, your function must return -1
 */
+int binary_search(int *array, size_t size, int value){
+  
+}

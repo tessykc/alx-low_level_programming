@@ -1,1 +1,1 @@
-The space complexity of the `allocate_map` function is O(n * m). This is because it allocates memory for a 2D array of size n x m using nested dynamic memory allocations. The outer loop runs 'n' times, and for each iteration, the inner loop allocates 'm' integers. 
+O(n * m) 

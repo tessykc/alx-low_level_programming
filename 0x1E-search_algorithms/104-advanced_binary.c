@@ -1,5 +1,5 @@
 #include "search_algos.h"
-
+#include <stdio.h>
 int advanced_binary_recursive(int *array, size_t low, size_t high, int value) {
     if (low > high)
         return -1;

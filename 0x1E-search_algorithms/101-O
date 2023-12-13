@@ -1,0 +1,1 @@
+The time complexity of a jump search in an array of size \(n\) with a step size of \(\sqrt{n}\) is \(O(\sqrt{n})\) in the average case. 

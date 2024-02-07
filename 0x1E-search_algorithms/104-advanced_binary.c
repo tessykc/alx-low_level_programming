@@ -1,5 +1,14 @@
 #include "search_algos.h"
 #include <stdio.h>
+/**
+* Where array is a pointer to the first element of the array to search in
+* size is the number of elements in array
+* And value is the value to search for
+* function must return the index where value is located
+* You can assume that array will be sorted in ascending order
+* If value is not present in array or if array is NULL, your function must return -1
+* Every time you split the array, you have to print the new array 
+*/
 int advanced_binary_recursive(int *array, size_t low, size_t high, int value) {
     if (low > high)
         return -1;

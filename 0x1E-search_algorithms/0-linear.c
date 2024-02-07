@@ -1,4 +1,5 @@
-#include "main.h"
+#include "search_algos.h"
+
 /**
 * Where array is a pointer to the first element of the array to search in
 * size is the number of elements in array

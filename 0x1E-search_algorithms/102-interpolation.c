@@ -1,5 +1,15 @@
-#include <search_algos.h>
+#include "search_algos.h"
 
+/**
+* Where array is a pointer to the first element of the array to search in
+* size is the number of elements in array
+* And value is the value to search for
+* function must return the first index where value is located
+* assume that array will be sorted in ascending order
+* If value is not present in array or if array is NULL, your function must return -1
+* To determine the probe position, you can use : 
+* size_t pos = low + (((double)(high - low) / (array[high] - array[low])) * (value - array[low]))
+*/
 int interpolation_search(int *array, size_t size, int value) {
     if (array == NULL) {
         return -1;  // Array is NULL
@@ -27,18 +37,3 @@ int interpolation_search(int *array, size_t size, int value) {
     return -1;  // Value not found
 }
 
-int main() {
-    int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-    size_t size = sizeof(arr) / sizeof(arr[0]);
-    int value = 6;
-
-    int result = interpolation_search(arr, size, value);
-
-    if (result != -1) {
-        printf("Value %d found at index %d\n", value, result);
-    } else {
-        printf("Value %d not found in the array\n", value);
-    }
-
-    return 0;
-}

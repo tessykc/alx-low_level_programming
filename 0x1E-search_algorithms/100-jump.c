@@ -1,44 +1,43 @@
 #include "search_algos.h"
 #include <math.h>
-
 /**
- * jump_search - searches for a value in an array of
- * integers using the Jump search algorithm
- *
- * @array: input array
- * @size: size of the array
- * @value: value to search in
- * Return: index of the number
- */
-int jump_search(int *array, size_t size, int value)
-{
-	int index, m, k, prev;
+* Where array is a pointer to the first element of the array to search in
+* size is the number of elements in array
+* And value is the value to search for
+* function must return the first index where value is located
+* assume that array will be sorted in ascending order
+* If value is not present in array or if array is NULL, your function must return -1
+* You have to use the square root of the size of the array as the jump step.
+* You can use the sqrt() function included in <math.h>
+*/
 
-	if (array == NULL || size == 0)
-		return (-1);
+int jump_search(int *array, size_t size, int value) {
+    if (array == NULL || size == 0) {
+        return -1;  // Array is NULL or empty
+    }
 
-	m = (int)sqrt((double)size);
-	k = 0;
-	prev = index = 0;
+    int step = sqrt(size);
+    int prev = 0;
 
-	do {
-		printf("Value checked array[%d] = [%d]\n", index, array[index]);
+    while (array[prev] < value) {
+        printf("Comparing value at index %d\n", prev);
+        
+        prev += step;
 
-		if (array[index] == value)
-			return (index);
-		k++;
-		prev = index;
-		index = k * m;
-	} while (index < (int)size && array[index] < value);
+        if (prev >= size) {
+            break;
+        }
+    }
 
-	printf("Value found between indexes [%d] and [%d]\n", prev, index);
+    int i;
+    for (i = prev - step; i < size && array[i] < value; i++) {
+        printf("Comparing value at index %d\n", i);
+    }
 
-	for (; prev <= index && prev < (int)size; prev++)
-	{
-		printf("Value checked array[%d] = [%d]\n", prev, array[prev]);
-		if (array[prev] == value)
-			return (prev);
-	}
+    if (i < size && array[i] == value) {
+        printf("Comparing value at index %d\n", i);
+        return i;  // Value found
+    }
 
-	return (-1);
+    return -1;  // Value not present in the array
 }

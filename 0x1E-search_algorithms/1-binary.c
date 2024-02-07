@@ -1,30 +1,65 @@
 #include "search_algos.h"
+#include <stdio.h>
 
 /**
-* Where array is a pointer to the first element of the array to search in
-* size is the number of elements in array
-* And value is the value to search for
-* Your function must return the index where value is located
-* You can assume that array will be sorted in ascending order
-* You can assume that value won’t appear more than once in array
-* if array is NULL, your function must return -1
-*/
-int binary_search(int *array, size_t size, int value){
-  if (array == NULL) {
-    return -1; // Return -1 if the array is NULL
-  }
-  int left = 0;
-  int right = size - 1;
-  while (left <= right) {
-    int middle = left + (right - left) / 2;
-    if (array[middle] == value) {
-      return middle; // Return the index if the value is found
-    } else if (array[middle] < value) {
-      left = middle + 1;
-    } else {
-      right = middle - 1;
-    }
-  }
-  return -1; // Return -1 if the value is not found in the array
+ * print_array - prints an array of integers
+ * @array: pointer to the start of the array
+ * @size: size of the array (number of elements)
+ *
+ * Return: nothing
+ */
+void print_array(int *array, int size)
+{
+	int i;
+
+	if (array == NULL || size == 0)
+		return;
+
+	printf("Searching in array: ");
+
+	for (i = 0; i < size; i++)
+	{
+		if (i == 0)
+			printf("%d", array[i]);
+		else
+			printf(", %d", array[i]);
+	}
+
+	printf("\n");
 }
 
+/**
+ * binary_search - find value in sorted array using binary search method
+ * @array: pointer to first element in array to be searched
+ * @size: size of the array (number of elements)
+ * @value: value to be searched for
+ *
+ * Return: index position of value or -1 if not found or array is null
+ */
+int binary_search(int *array, size_t size, int value)
+{
+	int low = 0;
+	int high = size - 1;
+	int mid;
+
+	if (array == NULL || size == 0 || array[0] > value)
+		return (-1);
+
+	while (low <= high)
+	{
+		mid = (low + high) / 2;
+
+		print_array(&array[low], (high - low) + 1);
+
+		if (array[mid] == value)
+			return (mid);
+
+		if (array[mid] > value)
+			high = mid - 1;
+
+		else
+			low = mid + 1;
+	}
+
+	return (-1);
+}

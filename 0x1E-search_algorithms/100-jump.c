@@ -1,43 +1,50 @@
-#include "search_algos.h"
 #include <math.h>
+#include "search_algos.h"
+
 /**
-* Where array is a pointer to the first element of the array to search in
-* size is the number of elements in array
-* And value is the value to search for
-* function must return the first index where value is located
-* assume that array will be sorted in ascending order
-* If value is not present in array or if array is NULL, your function must return -1
-* You have to use the square root of the size of the array as the jump step.
-* You can use the sqrt() function included in <math.h>
-*/
+ * jump_search - search a sorted array for a value using jump search method
+ * @array: the array to be searched
+ * @size: the size of the array (number of elements)
+ * @value: the int to be searched for
+ *
+ * Return: 1st index value is found at or -1 if not present or null array
+ */
+int jump_search(int *array, size_t size, int value)
+{
+	int jump = sqrt(size);
+	int start = 0;
+	int section_end = 0;
 
-int jump_search(int *array, size_t size, int value) {
-    if (array == NULL || size == 0) {
-        return -1;  // Array is NULL or empty
-    }
+	if (array == NULL || size == 0 || array[start] > value)
+		return (-1);
 
-    int step = sqrt(size);
-    int prev = 0;
+	while (section_end < (int)size)
+	{
+		if (array[section_end] < value)
+		{
+			printf("Value checked array[%d] = [%d]\n", section_end, array[section_end]);
 
-    while (array[prev] < value) {
-        printf("Comparing value at index %d\n", prev);
-        
-        prev += step;
+			start = section_end;
+			section_end += jump;
+		}
+		else
+		{
+			break;
+		}
+	}
 
-        if (prev >= size) {
-            break;
-        }
-    }
+	printf("Value found between indexes [%d] and [%d]\n", start, section_end);
 
-    int i;
-    for (i = prev - step; i < size && array[i] < value; i++) {
-        printf("Comparing value at index %d\n", i);
-    }
+	if (section_end > (int)size - 1)
+		section_end = size - 1;
 
-    if (i < size && array[i] == value) {
-        printf("Comparing value at index %d\n", i);
-        return i;  // Value found
-    }
+	while (start <= section_end)
+	{
+		printf("Value checked array[%d] = [%d]\n", start, array[start]);
+		if (array[start] == value)
+			return (start);
+		start++;
+	}
 
-    return -1;  // Value not present in the array
+	return (-1);
 }

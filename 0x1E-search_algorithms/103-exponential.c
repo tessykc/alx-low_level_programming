@@ -1,34 +1,40 @@
-#include <stdio.h>
 #include "search_algos.h"
+#include <stdio.h>
 
 /**
- * exponential_search - Searches for a value in a sorted array of integers
- * using the Exponential search algorithm
- * @array: Pointer to the first element of the array to search in
- * @size: Number of elements in @array
- * @value: Value to search for
+ * exponential_search - function that searches for a value in a sorted array
+ * of integers using the Exponential search algorithm.
+ * Description:
+ *      - Time Complexity : O(log(n))
+ *      - Auxiliary Space:
+ *              - With iterative Binary Search, we need only O(1) space.
+ *              - With recursive Binary Search, we need O(log(n)) space.
+ * 
+ * @array: pointer to the first element of the array to search in
+ * @size: the number of elements in array
+ * @value: the value to search for
  *
- * Return: Index of the value in the array if found, -1 otherwise
+ * Return: the first index where value is located or -1 if not exists.
  */
 int exponential_search(int *array, size_t size, int value)
 {
-    size_t bound = 1;
-    size_t prev_bound = 0;
+	size_t bound = 1, high;
+	int result;
 
-    if (array == NULL)
-        return (-1);
+	if (array == NULL || size == 0)
+		return (-1);
 
-    while (bound < size && array[bound] < value)
-    {
-        printf("Value checked array[%lu] = [%d]\n", bound, array[bound]);
-        prev_bound = bound;
-        bound *= 2;
-    }
+	if (array[0] == value)
+		return (0);
 
-    if (bound >= size)
-        bound = size - 1;
+	while (bound < size && array[bound] <= value)
+	{
+		printf("Value checked array[%ld] = [%d]\n", bound, array[bound]);
+		bound *= 2;
+	}
 
-    printf("Value found between indexes [%lu] and [%lu]\n", prev_bound, bound);
-
-    return binary_search(array, prev_bound, value);
+	high = (bound < size - 1) ? bound : size - 1;
+	printf("Value found between indexes [%ld] and [%ld]\n", bound / 2, high);
+	result = binary_search_recursive(array + bound / 2, high - bound / 2 + 1, value);
+	return ((result == -1) ? -1 : result + (int)(bound / 2));
 }
